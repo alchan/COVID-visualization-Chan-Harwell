@@ -28,7 +28,7 @@ df = pd.read_csv(io.StringIO(download.decode('utf-8')))
 pd.set_option('precision', 0)
 
 
-# ------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # App layout
 app.layout = html.Div([
 
@@ -52,7 +52,7 @@ app.layout = html.Div([
 ])
 
 
-# ------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Connect Choropleth with Dash Components
 @app.callback(
     [Output(component_id='output_container', component_property='children'),
@@ -91,5 +91,3 @@ def update_graph(option_slctd):
 # ------------------------------------------------------------------------------
 if __name__ == '__main__':
     app.run_server(debug=True)
-CovidChoropleth.py
-Displaying CovidChoropleth.py.
