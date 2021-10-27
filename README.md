@@ -8,7 +8,7 @@ __Using the Program:__
       Future program executions in the same directory as the populated assets folder will be expedient.
 
 
-__About:__
+__About:__  
 The COVID-19 pandemic has dramatically reshaped social habits, financial markets, and medical technology on a global scale. 
 Presenting such a risk to public health has made tracking COVID-19 cases and deaths a top priority for major institutions including 
 the Center for Disease Control and Prevention (CDC), the World Health Organization (WHO), and the New York Times.
