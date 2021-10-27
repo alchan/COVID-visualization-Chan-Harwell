@@ -162,6 +162,11 @@ dateIndexer = {}
 daterange, i = pd.date_range(df['date'].min(), df['date'].max()), 0
 dirname = os.path.dirname(__file__)
 assets_path = os.path.join(dirname, 'assets')
+if not os.path.exists(assets_path):
+    os.mkdir(assets_path)
+    os.mkdir(assets_path + '/Cases')
+    os.mkdir(assets_path + '/Deaths')
+    
 for dte in daterange:
     day = dte.strftime('%Y-%m-%d')
     dateIndexer[i] = day
