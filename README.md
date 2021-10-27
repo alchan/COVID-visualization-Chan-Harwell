@@ -1,4 +1,4 @@
-# COVID-visualization-Chan-Harwell
+# Visualizing U.S. COVID-19 Cases using Plot.ly/Dash
 
 __Using the Program:__
 1. Install plotly and dash using pip or a similar package manager
