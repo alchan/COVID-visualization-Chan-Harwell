@@ -1,6 +1,6 @@
 # COVID-visualization-Chan-Harwell
 
-** Using the Program: **
+__Using the Program:__
 1. Install plotly and dash using pip or a similar package manager
 2. Run the program using Python 3
 3. The program dynamically pulls the latest data from the NY Times GitHub page at launch
@@ -9,7 +9,7 @@
 
 
 
-** About: **
+__About__
 The COVID-19 pandemic has dramatically reshaped social habits, financial markets, and medical technology on a global scale. 
 Presenting such a risk to public health has made tracking COVID-19 cases and deaths a top priority for major institutions including 
 the Center for Disease Control and Prevention (CDC), the World Health Organization (WHO), and the New York Times.
