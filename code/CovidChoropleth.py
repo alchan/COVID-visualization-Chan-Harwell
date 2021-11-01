@@ -12,7 +12,7 @@ import plotly.express as px #version 5.3.1 used
 import requests
 from urllib.request import urlopen
 
-# load U.S. counties and fip code data
+# load U.S. counties and fips code data
 with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
     counties = json.load(response)
 
@@ -131,9 +131,7 @@ def save_frame(year_slctd, data_slctd, url):
     
     tickT = [int(10**tickV[0]), int(10**tickV[1]), 
             int(10**tickV[2]), int(10 **tickV[3])]
-    titleText = "Reported Cases"
-    if log == 'logdeaths':
-        titleText = "Reported Deaths"
+    titleText = ("Reported Deaths", "Reported Cases") [log == 'logcases']
 
     fig.update_layout(coloraxis_colorbar=dict(
     title=titleText,
@@ -157,16 +155,16 @@ def save_frame(year_slctd, data_slctd, url):
     )
     fig.write_image(url)
 
-# Populate any missing images since time of last data pull and create dateIndexer dict for Slider
-dateIndexer = {}
-daterange, i = pd.date_range(df['date'].min(), df['date'].max()), 0
+# Populate any missing images since time of last data pull and create dateIndexer dict for Date Slider
 dirname = os.path.dirname(__file__)
 assets_path = os.path.join(dirname, 'assets')
 if not os.path.exists(assets_path):
     os.mkdir(assets_path)
     os.mkdir(assets_path + '/Cases')
     os.mkdir(assets_path + '/Deaths')
-    
+
+dateIndexer = {}
+daterange, i = pd.date_range(df['date'].min(), df['date'].max()), 0
 for dte in daterange:
     day = dte.strftime('%Y-%m-%d')
     dateIndexer[i] = day
@@ -184,7 +182,7 @@ mx = max(dateIndexer, key=int)
 app.layout = html.Div([
     dcc.Interval(
             id='frame-interval',
-            interval=200, # Animation speed in milliseconds
+            interval=200, # Animation speed in milliseconds (lower is faster)
             n_intervals=0,
             disabled=True
         ),
@@ -228,7 +226,7 @@ app.layout = html.Div([
         style = {'width' : '100%', 'display' : 'flex', 'align-items': 'center', 'justify-content' : 'center', 'background':bg}),
     html.Br(),
 
-    # Slider only accepts integers. The dateIndexer dict is used to convert each to int to a date
+    # Slider only accepts integers. The dateIndexer dict is used to convert each int to a date
     dcc.Slider(
         id='frameSlider',
         min=0,
@@ -301,9 +299,7 @@ def update_graph(year_slctd, data_slctd):
     
     tickT = [int(10**tickV[0]), int(10**tickV[1]), 
             int(10**tickV[2]), int(10 **tickV[3])]
-    titleText = "Reported Cases"
-    if log == 'logdeaths':
-        titleText = "Reported Deaths"
+    titleText = ("Reported Deaths", "Reported Cases") [log == 'logcases']
 
     fig.update_layout(coloraxis_colorbar=dict(
     title=titleText,
@@ -371,4 +367,4 @@ def start_stop_interval(button_clicks, disabled_state):
 # ----------------------------------------------------------------------------
 if __name__ == '__main__':
     #set debug=True for development
-    app.run_server(debug=True)
+    app.run_server(debug=False)
